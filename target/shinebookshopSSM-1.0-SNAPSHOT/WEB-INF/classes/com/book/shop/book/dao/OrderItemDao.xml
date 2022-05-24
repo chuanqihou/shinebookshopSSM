@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.shop.book.dao.OrderItemDao">
+    <insert id="orderItemAdd">
+        insert into s_orderItem(bookId,orderId,quantity) values (#{bookId},#{orderId},#{quantity})
+    </insert>
+
+    <select id="findItemByOrderId" resultType="com.book.shop.book.domain.OrderItem">
+        select * from s_orderItem where orderId=#{orderId}
+    </select>
+
+    <delete id="deleteByOrderId">
+        delete from s_orderitem where orderId=#{orderId}
+    </delete>
+
+    <delete id="deleteByBookId">
+        delete from s_orderitem where bookId=#{bookId}
+    </delete>
+
+    <select id="queryItemByOrderId" resultType="com.book.shop.book.domain.OrderItem">
+        select * from s_orderItem where orderId=#{orderId}
+    </select>
+
+    <select id="getOrderIdByBookId" resultType="int">
+        select orderId from s_orderItem where bookId=#{id}
+    </select>
+
+</mapper>

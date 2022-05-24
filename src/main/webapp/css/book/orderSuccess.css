@@ -1,0 +1,18 @@
+.wrapper{
+    min-height:500px;
+}
+.wrapper .main .info{
+    width:900px;
+    margin:70px auto 0;
+    padding:50px;
+    border:1px #ccc solid;
+    font-size: 24px;
+}
+.wrapper .main .info i{
+    color:red;
+
+}
+.wrapper .main .info .op{
+    width: 300px;
+    margin:20px auto 0;
+}

@@ -1,0 +1,18 @@
+.wrapper {
+    minheight: 400px;
+}
+
+.wrapper .main {
+    padding: 20px 50px;
+}
+
+.wrapper .main .content .spinner a {
+    display: inline-block;
+}
+
+.wrapper .main .content .spinner input {
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+    border-radius: 3px;
+}

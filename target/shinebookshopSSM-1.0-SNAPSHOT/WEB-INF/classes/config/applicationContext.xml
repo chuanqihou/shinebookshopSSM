@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    spring配置文件：声明service、dao、工具类等对象-->
+
+<!--    引入数据库数据文件-->
+    <context:property-placeholder location="classpath:config/jdbc.properties" />
+
+    <!--    声明数据源DataSource，作用是连接数据库。数据库连接池（使用阿里巴巴的Druid）-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.userName}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="maxActive" value="${jdbc.max}"></property>
+    </bean>
+
+    <!--    声明的是mybatis中提供的SqlSessionFactoryBean类，这个类内部创建SqlSessionFactory对象-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--        set注入，把数据库连接池给了dataSource属性-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--        mybatis主配置文件的位置
+                    configLocation的属性是Resource类型，读取配置文件
+                    它的赋值使用value指定文件路劲，使用classpath表示文件位置-->
+        <property name="configLocation" value="classpath:/config/mybatis.xml"></property>
+    </bean>
+
+    <!--    使用mybatis的扫描器，创建dao对象
+            创建dao对象，使用SqlSession中的getMapper(UserDao.class)
+            MapperScannerConfigurer：在内部调用getMapper()生成每个dao的代理对象-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--        指定SqlSessionFactory对象的id-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <!--        指定包名，包是dao接口所在的包名-->
+        <property name="basePackage" value="com.book.shop.book.dao;com.book.shop.admin.dao"></property>
+    </bean>
+
+    <!--    声明service的注解@Service所在包名的位置-->
+    <context:component-scan base-package="com.book.shop.book.service" />
+
+
+</beans>

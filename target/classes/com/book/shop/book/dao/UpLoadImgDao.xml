@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.shop.book.dao.UpLoadImgDao">
+    <delete id="deleteImgById">
+        delete from s_uploadimg where imgId=#{imgId}
+    </delete>
+
+    <insert id="imgAdd">
+        insert into s_uploadimg(imgName,imgSrc,imgType) values(#{imgName},#{imgSrc},#{imgType})
+    </insert>
+    
+    <select id="findIdByImgName" resultType="int">
+        select imgId from s_uploadimg where imgName=#{imgName}
+    </select>
+
+    <update id="imgUpdate">
+        update s_uploadimg set imgName=#{imgName},imgSrc=#{imgSrc},imgType=#{imgType} where imgId=#{imgId}
+    </update>
+
+</mapper>

@@ -1,0 +1,146 @@
+package com.book.shop.book.domain;
+
+import java.util.Map;
+
+public class User {
+
+    private int userId;         //用户编号
+    private String userName;    //用户名
+    private String passWord;    //用户密码
+    private String name;		//用户姓名
+    private String sex;         //用户性别
+    private int age;            //用户年龄
+    private String tell;        //用户电话
+    private String address;     //用户地址
+    private String enabled;		//用户状态y启用n禁用
+
+    public User() {}
+
+    public User(String userName, String passWord) {
+		super();
+		this.userName = userName;
+		this.passWord = passWord;
+	}
+
+	public User(String userName, String passWord, String name, String sex, int age, String tell, String address) {
+		super();
+		this.userName = userName;
+		this.passWord = passWord;
+		this.name = name;
+		this.sex = sex;
+		this.age = age;
+		this.tell = tell;
+		this.address = address;
+	}
+
+	public User(int userId, String passWord, String name, String sex, int age, String tell, String address,
+                String enabled) {
+		super();
+		this.userId = userId;
+		this.passWord = passWord;
+		this.name = name;
+		this.sex = sex;
+		this.age = age;
+		this.tell = tell;
+		this.address = address;
+		this.enabled = enabled;
+	}
+
+	public User(Map<String,Object> map) {
+    	userId=(int) map.get("userId");
+    	userName=(String) map.get("userName");
+    	passWord=(String) map.get("PassWord");
+    	name=(String) map.get("name");
+    	sex=(String) map.get("sex");
+    	age=(int) map.get("age");
+    	tell=(String) map.get("tell");
+    	address=(String) map.get("address");
+    	enabled=(String) map.get("enabled");
+    }
+    
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassWord() {
+		return passWord;
+	}
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getTell() {
+		return tell;
+	}
+
+	public void setTell(String tell) {
+		this.tell = tell;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+
+	public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + ", PassWord=" + passWord + ", name=" + name
+				+ ", sex=" + sex + ", age=" + age + ", tell=" + tell + ", address=" + address + ", enabled=" + enabled
+				+ "]";
+	}
+
+
+	
+    
+
+}

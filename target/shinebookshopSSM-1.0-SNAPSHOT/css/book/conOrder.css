@@ -1,0 +1,41 @@
+.wrapper .main h3{
+    border-bottom: 1px #ccc solid;
+    padding:5px 0;
+    text-align: center;
+}
+.wrapper .main .info,.wrapper .main .payMethod,.wrapper .main .pro,.wrapper .main .settle{
+    margin:25px 0;
+}
+.wrapper .main .row>h4{
+    font-size: 22px;
+    font-weight: bold;
+}
+.wrapper .main .info .default {
+    border:1px #ccc solid;
+}
+.wrapper .main .pro .prolist td{
+    height:50px;
+    line-height: 50px;
+}
+.wrapper .main .settle .settle-info{
+    border:1px #ccc solid;
+    padding:20px ;
+    font-size:16px;
+    margin:0;
+}
+.wrapper .main .settle .settle-info .settle-li>div{
+    line-height: 40px;
+}
+.wrapper .main .settle .settle-info span{
+    display:inline-block;
+    width:120px;
+    text-align:right;
+}
+.wrapper .main .settle .settle-info .totprice {
+    padding:10px 0;
+    font-size: 28px;
+
+}
+.wrapper .main .settle .settle-info .totprice b{
+    color:red;
+}

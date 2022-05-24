@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.shop.book.dao.BookDao">
+    <!--获取首页展示商品图书-->
+    <select id="bookList" resultType="com.book.shop.book.domain.ViewBook">
+        select * from view_book order by rand() limit #{num}
+    </select>
+
+    <!--获取指定数量新添加的图书-->
+    <select id="newBooks" resultType="com.book.shop.book.domain.ViewBook">
+        SELECT * FROM view_book ORDER BY addTime desc limit 0,#{num}
+    </select>
+
+    <!--按分类获取图书数量-->
+    <select id="sortBookReadCount" resultType="long">
+        select count(*) as count from s_book where catalogId=#{catalogId}
+    </select>
+
+    <!--按分类获取图书分页列表(视图)-->
+    <select id="sortIdBookList" resultType="com.book.shop.book.domain.ViewBook">
+        select * from view_book where catalogId=#{catalogId} limit #{i},#{j}
+    </select>
+
+    <!--获取图书总数-->
+    <select id="bookReadCount" resultType="long">
+        select count(*) as count from s_book
+    </select>
+
+    <!--获取图书分页列表(视图)-->
+    <select id="PageBookList" resultType="com.book.shop.book.domain.ViewBook">
+        select * from view_book limit #{i},#{j}
+    </select>
+
+    <!--根据图书id查找图书信息-->
+    <select id="findBookById" resultType="com.book.shop.book.domain.ViewBook">
+        select * from view_book where bookId=#{bookId}
+    </select>
+
+    <select id="bookReadCountByBookName" resultType="int">
+        select count(*) as count from s_book where bookName like '%' #{bookName} '%'
+    </select>
+
+    <select id="bookListByBookName" resultType="com.book.shop.book.domain.ViewBook">
+        select * from view_book where bookName like '%' #{bookName} '%' limit #{i},#{j}
+    </select>
+
+    <select id="OrderFindBookById" resultType="com.book.shop.book.domain.Book">
+        select * from view_book where bookId=#{bookId}
+    </select>
+
+    <select id="queryBookById" resultType="com.book.shop.book.domain.Book">
+        select * from s_book where bookId=#{bookId}
+    </select>
+
+    <delete id="deleteBookByBookId">
+        delete from s_book where bookId=#{bookId}
+    </delete>
+
+    <insert id="bookAdd">
+        insert into s_book(bookName,catalogId,author,press,price,description,imgId,addTime)
+        values(#{bookName},#{catalogId},#{author},#{press},#{price},#{description},#{imgId},#{addTime})
+    </insert>
+
+    <select id="findBookByBookName" resultType="int">
+        select count(*) from s_book where bookName=#{bookName}
+    </select>
+
+    <update id="bookUpdate">
+        update s_book set catalogId=#{catalogId},author=#{author},press=#{press},price=#{price},description=#{description} where bookId=#{bookId}
+    </update>
+
+    <delete id="deleteBookByCatalogId">
+        delete from s_book where catalogId=#{id}
+    </delete>
+
+    <select id="findViewsBookById" resultType="com.book.shop.book.domain.ViewBook">
+        select * from view_book where bookId=#{bookId}
+    </select>
+
+    <select id="queryBookIdByCatalogId" resultType="int">
+        select bookId from s_book where catalogId=#{id}
+    </select>
+
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.shop.book.dao.CatalogDao">
+    <!--获取图书分类信息（包括类别图书的数量）-->
+    <select id="getCatalog" resultType="com.book.shop.book.domain.Catalog">
+        select * from s_catalog
+    </select>
+
+    <select id="catalogAllCount" resultType="int">
+        select count(*) as count from s_catalog
+    </select>
+
+    <select id="queryAllCatalog" resultType="com.book.shop.book.domain.Catalog">
+        select * from s_catalog limit #{i},#{j}
+    </select>
+
+    <insert id="catalogAdd">
+        insert into s_catalog (catalogName) values (#{catalogName})
+    </insert>
+
+    <select id="findCatalogByCatalogName" resultType="int">
+        select count(*) from s_catalog where catalogName=#{catalogName}
+    </select>
+
+    <delete id="catalogDelete">
+        delete from s_catalog where catalogId=#{id}
+    </delete>
+
+</mapper>

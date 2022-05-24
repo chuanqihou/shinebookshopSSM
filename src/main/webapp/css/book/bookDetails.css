@@ -1,0 +1,26 @@
+.wrapper .pro_info {
+    border-bottom: 1px #ccc solid;
+    line-height: 34px;
+    margin-top: 20px;
+}
+.wrapper .pro_info tr td:first-child {
+    font-weight: bold;
+}
+.wrapper .pro_info i {
+    color: red;
+    font-size: 22px;
+}
+.wrapper .buy_pro {
+    margin-top: 20px;
+}
+.wrapper .pro_desc {
+    margin: 10px;
+}
+.wrapper .pro_desc h3 {
+    border-bottom: 1px #ccc solid;
+    padding: 10px;
+}
+.wrapper .pro_desc div {
+    text-indent: 2em;
+    line-height: 2em;
+}

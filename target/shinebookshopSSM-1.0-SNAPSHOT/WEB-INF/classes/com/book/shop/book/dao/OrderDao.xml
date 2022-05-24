@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.shop.book.dao.OrderDao">
+    <insert id="orderAdd">
+        insert into s_order(orderNum,userId,orderDate,orderStatus,money) values(#{orderNum},#{userId},#{orderDate},#{orderStatus},#{money})
+    </insert>
+
+    <select id="findOrderIdByOrderNum" resultType="int">
+        select orderId from s_order where orderNum=#{orderNum}
+    </select>
+
+    <select id="orderReadCount" resultType="long">
+        select count(*) as count from s_order where userId=#{userId}
+    </select>
+
+    <select id="viewOrder" resultType="com.book.shop.book.domain.Order">
+        select * from s_order where userId=#{userId} limit #{i},#{j}
+    </select>
+
+    <select id="queryOrderByUserId" resultType="com.book.shop.book.domain.Order">
+        select * from s_order where userId=#{id}
+    </select>
+
+    <delete id="deleteByUserId">
+        delete from s_order where userId=#{id};
+    </delete>
+
+    <select id="findOrderByUserIds" resultType="com.book.shop.book.domain.Order">
+        select * from s_order where userId in (#{ids})
+    </select>
+
+    <delete id="deleteByUserIds">
+        delete from s_order where userId in (#{ids})
+    </delete>
+
+    <select id="orderAllCount" resultType="int">
+        select count(*) as count from s_order
+    </select>
+
+    <select id="queryOrder" resultType="com.book.shop.book.domain.Order">
+        select * from s_order limit #{i},#{j}
+    </select>
+
+    <select id="queryOrderHandleCount" resultType="int">
+        select count(*) as count from s_order where orderStatus=#{i}
+    </select>
+
+    <select id="queryOrderByStatus" resultType="com.book.shop.book.domain.Order">
+        select * from s_order where orderStatus=#{status} limit #{i},#{j}
+    </select>
+
+    <select id="orderReadCountByName" resultType="long">
+        select count(*) as count from s_order where orderNum like '%' #{ordername} '%'
+    </select>
+
+    <select id="queryOrderByOrderName" resultType="com.book.shop.book.domain.Order">
+        select * from s_order where orderNum like '%' #{ordername} '%' limit #{i},#{j}
+    </select>
+
+    <select id="findOrderByOrderId" resultType="com.book.shop.book.domain.Order">
+        select * from s_order where orderId=#{id}
+    </select>
+
+    <delete id="deleteOrderByOrderId">
+        delete from s_order where orderId=#{orderId}
+    </delete>
+
+    <select id="orderReadCountByNameAndStatus" resultType="long">
+        select count(*) as count from s_order where orderStatus=#{status} and orderNum like '%' #{orderName} '%'
+    </select>
+
+    <select id="queryOrderByOrderNameAndStatus" resultType="com.book.shop.book.domain.Order">
+        select * from s_order where orderStatus=#{status} and orderNum like '%' #{ordername} '%' limit #{i},#{j}
+    </select>
+
+    <select id="orderAllCountByStatus" resultType="int">
+        select count(*) as count from s_order where orderStatus=#{status}
+    </select>
+
+    <update id="orderChangeStatus">
+        update s_order set orderStatus=#{status} where orderId=#{id}
+    </update>
+
+</mapper>
